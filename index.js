@@ -6,9 +6,10 @@ const exphbs  = require('express-handlebars');
 const session = require('express-session');
 const connectDB = require('./configs/database');
 const passport = require('passport');
+const flash = require('connect-flash');
 
 //load configs from .env file
-dotenv.config({path: './configs/.env'});
+dotenv.config({path: './.env'});
 
 // passport config
 require('./configs/passport')(passport);
@@ -42,6 +43,7 @@ app.use(passport.session());
 
 // Define routes
 app.use('/', require('./routes'));
+app.use('/auth', require('./routes/auth'));
 
 // setup for loading static resources from 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
