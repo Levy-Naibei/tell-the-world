@@ -1,9 +1,11 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const path = require('path');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const exphbs  = require('express-handlebars');
 const session = require('express-session');
+const SessionStore = require('connect-mongo')(session);
 const connectDB = require('./configs/database');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -31,7 +33,8 @@ app.set('view engine', '.hbs');
 app.use(session({
     secret: 'some-secret-key',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: new SessionStore({mongooseConnection: mongoose.connection})
 }));
 
 /*
