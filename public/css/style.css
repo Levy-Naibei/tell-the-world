@@ -1,0 +1,19 @@
+p {
+    margin-top: 10px 0 !important;
+}
+
+.login-container {
+    width: 500px;
+    max-width: 90%;
+    margin: 10% auto 0;
+    padding: 0.8rem;
+    text-align: center;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+.card:hover {
+    box-shadow: 4px 4px 4px rgb(121, 123, 124);
+}
