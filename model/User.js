@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
     firstName: { type: String, require: true },
     lastName: { type: String, require: true },
     image: { type: String }, 
-    createdAt: { type: Date, require: true }
+    createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('User', UserSchema);

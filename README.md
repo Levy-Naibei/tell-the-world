@@ -23,13 +23,13 @@
 - git clone `https://github.com/Levy-Naibei/tell-the-world.git`
 - cd `tell-the-world`
 - Run `yarn install`
-- Create `.env` file at root directory by checking `.env.sample` file
-- Run `yarn start`
+- Create `.env` file at root directory and add env variables by checking `.env.sample` file
+- Run `yarn dev`
 
 ### Hosted site url
 
-> This site is hosted in heroku free account. If you notice any delay,
-please allow afew seconds after sending a request for servers to restart
+> This site is hosted in heroku free account. If you notice any delay after sending a request,
+please allow afew seconds for servers to restart
 
 `https://story-maker.herokuapp.com`
 
