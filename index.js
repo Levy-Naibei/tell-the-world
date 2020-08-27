@@ -9,7 +9,7 @@ const SessionStore = require('connect-mongo')(session)
 const passport = require('passport');
 const flash = require('connect-flash');;
 const connectDB = require('./configs/database');
-const { formatDate } = require('./helpers');
+const { formatDate, stripTags, truncate } = require('./helpers');
 
 //load configs from .env file
 dotenv.config({path: './.env'});
@@ -36,7 +36,7 @@ if(process.env.NODE_ENV === 'development'){
  * and handle bars helpeer
  */
 app.engine('.hbs', exphbs({
-    helpers: { formatDate },
+    helpers: { formatDate, truncate, stripTags },
     dafaultLayout: 'main',
     extname: '.hbs'
 }));

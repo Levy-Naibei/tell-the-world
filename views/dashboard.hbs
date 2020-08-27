@@ -15,7 +15,7 @@
             {{#each fetchedStories}}
                 <tr>
                     <td><a href="/stories/{{_id}}"></a>{{title}}</td>
-                    <td>{{formatDate createdAt "YYYY MMM Do HH:mm:ss a"}}</td>
+                    <td>{{formatDate createdAt "MMM Do YYYY HH:mm:ss a"}}</td>
                     <td> <span class="dash-status"></span>{{status}}</td>
                     <td></td>
                 </tr>
