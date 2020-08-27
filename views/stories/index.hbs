@@ -1,0 +1,24 @@
+<div class="row">
+    {{#each pubStories}}
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                    {{!-- editIcon --}}
+                </div>
+                <div class="card-content center-align">
+                    <h4>{{title}}</h4>
+                    <p>{{body}}</p>
+                    <div class="chip">
+                        <img src="{{user.image}}" alt="user pic" />
+                        <a href="/stories/user/{{user._id}}">{{user.firstName}}</a>
+                    </div>
+                </div>
+                <div class="card-action center-align">
+                    <a href='/stories/{{_id}}' class="btn grey">Read More</a>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <p class="lead">You have no stories.</p>
+    {{/each}}
+</div>
