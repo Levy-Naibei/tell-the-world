@@ -5,10 +5,11 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const exphbs  = require('express-handlebars');
 const session = require('express-session');
-const SessionStore = require('connect-mongo')(session);
-const connectDB = require('./configs/database');
+const SessionStore = require('connect-mongo')(session)
 const passport = require('passport');
-const flash = require('connect-flash');
+const flash = require('connect-flash');;
+const connectDB = require('./configs/database');
+const { formatDate } = require('./helpers');
 
 //load configs from .env file
 dotenv.config({path: './.env'});
@@ -30,8 +31,15 @@ if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
 }
 
-// Register `hbs.engine` with the Express app.
-app.engine('.hbs', exphbs({dafaultLayout: 'main', extname: '.hbs'}));
+/**
+ * Register `hbs.engine` with the Express app.
+ * and handle bars helpeer
+ */
+app.engine('.hbs', exphbs({
+    helpers: { formatDate },
+    dafaultLayout: 'main',
+    extname: '.hbs'
+}));
 app.set('view engine', '.hbs');
 
 // sessions middleware setup

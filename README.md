@@ -17,6 +17,10 @@
 ### Features
 
 - Login with google
+- Add stories (public or private)
+- Display stories
+- Update stories
+- Delete Stories
 
 ### Getting started
 
@@ -31,7 +35,7 @@
 > This site is hosted in heroku free account. If you notice any delay after sending a request,
 please allow afew seconds for servers to restart
 
-`https://story-maker.herokuapp.com`
+`https://medium-clone.herokuapp.com`
 
 ### Credits
 
