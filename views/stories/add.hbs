@@ -1,0 +1,36 @@
+<div class="row form-container">
+    <form action="/stories" method="POST" class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Title" id="title" name="title" class="validate">
+          <label for="title">Title</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <select id='status' name='status'>
+            <option value="" disabled selected>Choose</option>
+            <option value="public" selected>Public</option>
+            <option value="private">Private</option>
+          </select>
+          <label for="status"> Status </label>
+        </div> 
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <h5>Tell the world your story</h5>
+          <textarea id="body" name="body"></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <button type="submit" value="save" class="btn waves-effect waves-light"> Save
+          <i class="fas fa-paper-plane"></i>
+        </button>
+        <a href="/dashboard" class="btn orange"></i>Cancel</a>
+      </div>
+    </form>
+  </div>
+        

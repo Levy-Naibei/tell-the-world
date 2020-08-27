@@ -1,1 +1,27 @@
-<h1>Dashboard</h1>
+<h5>Dashboard</h5>
+<h4>Welcome, {{name}}</h4>
+
+{{#if fetchedStories}}
+    <table class="">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each fetchedStories}}
+                <tr>
+                    <td><a href="/stories/{{_id}}"></a>{{title}}</td>
+                    <td>{{createdAt}}</td>
+                    <td> <span class="dash-status"></span>{{status}}</td>
+                    <td></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p class="lead">You have no stories. Create now</p>
+{{/if}}

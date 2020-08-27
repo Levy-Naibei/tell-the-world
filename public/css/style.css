@@ -1,3 +1,5 @@
+*{box-sizing: border-box;}
+
 p {
     margin-top: 10px 0 !important;
 }
@@ -16,4 +18,14 @@ p {
 
 .card:hover {
     box-shadow: 4px 4px 4px rgb(121, 123, 124);
+}
+
+.logo {
+    font-size: 18px;
+    
+}
+
+.form-container {
+    padding: 1.2rem;
+    margin: 1.2rem auto;
 }

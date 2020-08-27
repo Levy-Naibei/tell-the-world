@@ -16,9 +16,14 @@ dotenv.config({path: './.env'});
 // passport config
 require('./configs/passport')(passport);
 
+//log mongo connection
 connectDB();
 
 const app = express();
+
+// body parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // for logging on treminal
 if(process.env.NODE_ENV === 'development'){
@@ -47,6 +52,7 @@ app.use(passport.session());
 // Define routes
 app.use('/', require('./routes'));
 app.use('/auth', require('./routes/auth'));
+app.use('/stories', require('./routes/stories'));
 
 // setup for loading static resources from 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));

@@ -1,14 +1,22 @@
 <nav>
-    <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">SM</a>
+    <div class="nav-wrapper container">
+        <a href="#!" class="brand-logo">
+            SM<span class='logo'>Story Maker</span>
+        </a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
             <i class="fas fa-bars"></i>
         </a>
-        <ul class="sidenav" id="mobile-demo">
+
+        <ul class="right hide-on-med-and-down">
             <li><a href="/stories">Public stories</a></li>
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="auth/logout">Logout</a></li>
         </ul>
     </div>
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/stories">Public stories</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="auth/logout">Logout</a></li>
+    </ul>
 </nav>
           
