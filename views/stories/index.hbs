@@ -7,7 +7,7 @@
                 </div>
                 <div class="card-content center-align">
                     <h4>{{title}}</h4>
-                    <p>{{body}}</p>
+                    <p>{{stripTags (truncate body len)}}</p>
                     <div class="chip">
                         <img src="{{user.image}}" alt="user pic" />
                         <a href="/stories/user/{{user._id}}">{{user.firstName}}</a>
