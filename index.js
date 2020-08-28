@@ -9,7 +9,7 @@ const SessionStore = require('connect-mongo')(session)
 const passport = require('passport');
 const flash = require('connect-flash');;
 const connectDB = require('./configs/database');
-const { formatDate, stripTags, truncate } = require('./helpers');
+const { formatDate, stripTags, truncate, editIcon } = require('./helpers');
 
 //load configs from .env file
 dotenv.config({path: './.env'});
@@ -36,7 +36,12 @@ if(process.env.NODE_ENV === 'development'){
  * and handle bars helpeer
  */
 app.engine('.hbs', exphbs({
-    helpers: { formatDate, truncate, stripTags },
+    helpers: {
+        formatDate,
+        truncate,
+        stripTags,
+        editIcon
+    },
     dafaultLayout: 'main',
     extname: '.hbs'
 }));
@@ -56,6 +61,12 @@ if any, from the session.
 */
 app.use(passport.initialize());
 app.use(passport.session());
+
+// set express global variable
+app.use((res, req, next) => {
+    req.locals.user = (res.user || null)
+    next();
+});
 
 // Define routes
 app.use('/', require('./routes'));

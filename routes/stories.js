@@ -33,10 +33,8 @@ router.post('/', ensureAuth, async(req, res) => {
 router.get('/', ensureAuth, async(req, res) => {
     try {
         const pubStories = await Story.find({status: 'public'})
-            .populate('user').sort({createdAt: 'desc'}).lean()
-        res.render('stories/index', {
-            pubStories
-        });
+            .populate('user').sort({createdAt: -1}).lean()
+        res.render('stories/index', { pubStories });
     } catch (error) {
         console.error(error)
         res.render('error/serverError')
