@@ -4,6 +4,10 @@ p {
     margin-top: 10px 0 !important;
 }
 
+#mobile-demo > div {
+    margin-top: 1.5rem;
+}
+
 .login-container {
     width: 500px;
     max-width: 90%;
@@ -28,4 +32,16 @@ p {
 .form-container {
     padding: 1.2rem;
     margin: 1.2rem auto;
+}
+
+.public {
+    margin: 1.2rem 0;
+}
+
+.public .card {
+    background-color: beige
+}
+
+#fab {
+    background-color: #ee6e73;
 }
