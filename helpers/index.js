@@ -20,18 +20,25 @@ module.exports = {
         return input.replace(/<(?:.|\n)*?>/gm, '');
     },
 
-    editIcon: (storyUser,loggedUser, storyId, floating=true) => {
-        if (storyUser._id.toString() == loggedUser._id.toString()) {
+    editIcon: (storyUser,loggedInUser, storyId, floating=true) => {
+        if (storyUser._id.toString() == loggedInUser._id.toString()) {
             if(floating) {
-                return `<a href="/stories/edit/${storyId}"
-                class="btn-floating half-way-fab blue">
-                <i class="fas fa-edit"></i>
+                return `<a href="/stories/update/${storyId}"
+                class="btn-floating halfway-fab blue">
+                <i class="fas fa-edit edit-icon"></i>
                 </a>`
             } else {
-                return `<a href="/stories/edit/${storyId}"><i class="fas fa-edit"></i></a>`
+                return `<a href="/stories/update/${storyId}"><i class="fas fa-edit"></i></a>`
             }
         } else{
             return ''
         }
+    },
+
+    select: (selected, options) => {
+        return options
+        .fn(this)
+        .replace(new RegExp(' value="' + selected + '"'), '$& selected="selected"')
+        .replace(new RegExp('>' + selected + '</option>'), ' selected="selected"$&')
     }
 }

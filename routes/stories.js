@@ -37,7 +37,58 @@ router.get('/', ensureAuth, async(req, res) => {
         res.render('stories/index', { pubStories });
     } catch (error) {
         console.error(error)
-        res.render('error/serverError')
+        res.render('error/serverError');
+    }
+});
+
+/**
+ * @desc   show update page
+ * @route  GET  /stories/update/:id
+ */
+router.get('/update/:id', ensureAuth, async(req, res) => {
+    try {
+        const story = await Story.findOne({_id: req.params.id}).lean();
+
+        if (!story) {
+            return res.render('error/pageNotFound'); 
+        }
+
+        if (story.user != req.user.id) {
+            res.redirect('/stories')
+        } else {
+            res.render('stories/update', { story });
+        }
+    } catch (error) {
+        console.error(error);       
+    }
+});
+
+/**
+ * @desc   process update form
+ * @route  PUT  /stories/:id
+ */
+router.put('/:id', ensureAuth, async(req, res) => {
+    try {
+        let story = await Story.findById(req.params.id).lean();
+
+        if (!story) {
+            res.render('/error/pageNotFound');
+        }
+
+        if (story.user != req.user.id) {
+            res.redirect('/stories');
+        } else {
+            story = await Story.findOneAndUpdate(
+                {_id: req.params.id},
+                req.body,
+                {
+                    new: true,
+                    runValidators: true
+                })
+            res.redirect('/dashboard');
+        }
+    } catch (err) {
+        console.error(err)
     }
 });
 

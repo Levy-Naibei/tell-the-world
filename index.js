@@ -7,9 +7,10 @@ const exphbs  = require('express-handlebars');
 const session = require('express-session');
 const SessionStore = require('connect-mongo')(session)
 const passport = require('passport');
-const flash = require('connect-flash');;
+const methodOverride = require('method-override')
+const flash = require('connect-flash');
 const connectDB = require('./configs/database');
-const { formatDate, stripTags, truncate, editIcon } = require('./helpers');
+const { formatDate, stripTags, truncate, editIcon, select } = require('./helpers');
 
 //load configs from .env file
 dotenv.config({path: './.env'});
@@ -26,6 +27,16 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// overide the POST
+app.use(methodOverride((req, res) => {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      // look in urlencoded POST bodies and delete it
+      let method = req.body._method
+      delete req.body._method
+      return method
+    }
+  }))
+
 // for logging on treminal
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
@@ -40,7 +51,8 @@ app.engine('.hbs', exphbs({
         formatDate,
         truncate,
         stripTags,
-        editIcon
+        editIcon,
+        select
     },
     dafaultLayout: 'main',
     extname: '.hbs'
