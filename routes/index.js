@@ -14,7 +14,7 @@ router.get('/', ensureGuest, (req, res) => {
 });
 
 /*
-@desc dashboard page
+@desc   dashboard page
 @route  GET /dashboard
 */
 router.get('/dashboard', ensureAuth, async(req, res) => {

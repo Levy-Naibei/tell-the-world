@@ -1,4 +1,3 @@
-<h5>Dashboard</h5>
 <h4>Welcome, {{name}}</h4>
 
 {{#if fetchedStories}}
@@ -8,20 +7,31 @@
                 <th>Title</th>
                 <th>Date</th>
                 <th>Status</th>
-                <th></th>
+                <th>Edit &#124; Delete</th>
             </tr>
         </thead>
         <tbody>
             {{#each fetchedStories}}
                 <tr>
-                    <td><a href="/stories/update/{{_id}}">{{title}}</a></td>
+                    <td><a href="/stories/{{_id}}">{{title}}</a></td>
                     <td>{{formatDate createdAt "MMM Do YYYY HH:mm:ss a"}}</td>
                     <td> <span class="dash-status"></span>{{status}}</td>
-                    <td></td>
+                    <td> 
+                        <a href="/stories/update/{{_id}}" class="btn update-icon">
+                            <i class="fas fa-edit"></i>
+                        </a>
+
+                        <form method="POST" action="/stories/{{_id}}" id="del-form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn red">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             {{/each}}
         </tbody>
     </table>
 {{else}}
-    <p class="lead">You have no stories. Create now</p>
+    <p class="lead">You have no stories. Create now!</p>
 {{/if}}

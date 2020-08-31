@@ -37,7 +37,7 @@ app.use(methodOverride((req, res) => {
     }
   }))
 
-// for logging on treminal
+// for logging on terminal
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
 }

@@ -4,7 +4,7 @@ const Story = require('./../model/Story');
 const router = express.Router();
 
 /**
- * @desc   add story page
+ * @desc   show add story form
  * @route  GET  /stories/add
  */
 router.get('/add', ensureAuth, (req, res) => {
@@ -69,7 +69,7 @@ router.get('/update/:id', ensureAuth, async(req, res) => {
  */
 router.put('/:id', ensureAuth, async(req, res) => {
     try {
-        let story = await Story.findById(req.params.id).lean();
+        let story = await Story.findById({_id:req.params.id}).lean();
 
         if (!story) {
             res.render('/error/pageNotFound');
@@ -89,6 +89,20 @@ router.put('/:id', ensureAuth, async(req, res) => {
         }
     } catch (err) {
         console.error(err)
+    }
+});
+
+/**
+ * @desc    delete a story
+ * @route   DELETE  /stories/:id
+ */
+router.delete('/:id', ensureAuth, async(req, res) => {
+    try {
+        await Story.remove({_id: req.params.id }).lean();
+        res.redirect('/dashboard');
+    } catch (err) {
+        console.log(err)
+        return res.render('error/serverError');
     }
 });
 
